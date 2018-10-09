@@ -75,9 +75,12 @@ class WickedPdf
 
     print_command(command.inspect) if in_development_mode?
 
-    err = Open3.popen3(*command) do |_stdin, _stdout, stderr|
-      stderr.read
-    end
+   # err = Open3.popen3(*command) do |_stdin, _stdout, stderr|
+     # stderr.read
+    #end
+
+    exec(command)
+
     if options[:return_file]
       return_file = options.delete(:return_file)
       return generated_pdf_file
