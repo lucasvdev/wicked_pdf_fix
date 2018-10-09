@@ -117,7 +117,7 @@ class WickedPdf
   rescue StandardError => e
     raise "Failed to execute:\n#{command}\nError: #{e}"
   ensure
-    generated_pdf_file.close! if generated_pdf_file && !return_file
+    #generated_pdf_file.close! if generated_pdf_file && !return_file
   end
 
   private
