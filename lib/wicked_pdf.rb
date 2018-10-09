@@ -81,7 +81,7 @@ class WickedPdf
      #print_command(_stdout.read)
      #ret = _stdout.read
      #stderr.read
-    end
+    #end
 
     exec(command)
 
