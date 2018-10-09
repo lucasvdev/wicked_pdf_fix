@@ -81,7 +81,7 @@ class WickedPdf
      p stderr
     end
 
-    exec(command)
+    #exec(command)
 
     if options[:return_file]
       return_file = options.delete(:return_file)
