@@ -75,9 +75,11 @@ class WickedPdf
 
     print_command(command.inspect) if in_development_mode?
 
+    ret = ""
+
    err = Open3.popen3(*command) do |_stdin, _stdout, stderr|
      stderr.read
-     p _stdout
+     ret = _stdout.read
      p stderr
     end
 
@@ -91,7 +93,7 @@ class WickedPdf
     generated_pdf_file.binmode
     pdf = generated_pdf_file.read
     #raise "Error generating PDF\n Command Error: #{err}" if options[:raise_on_all_errors] && !err.empty?
-    #raise "PDF could not be generated!\n Command Error: #{err}" if pdf && pdf.rstrip.empty?
+    raise "PDF could not be generated!\n Command Error: #{err} #{ret}" if pdf && pdf.rstrip.empty?
     pdf
   rescue StandardError => e
     raise "Failed to execute:\n#{command}\nError: #{e}"
