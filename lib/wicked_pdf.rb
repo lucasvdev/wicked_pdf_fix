@@ -83,7 +83,7 @@ class WickedPdf
      #stderr.read
     #end
 
-    exec(command)
+    exec(*command)
 
     #print_command(ret)
 
