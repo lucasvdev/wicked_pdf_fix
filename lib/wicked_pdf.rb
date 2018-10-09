@@ -85,6 +85,10 @@ class WickedPdf
     #
     err = ""
 
+    stdout_str =""
+    stderr_str =""
+    status = ""
+
     Open3.popen3(*command) do |stdin, stdout, stderr, wait_thr|            # we're done
       stdout_str = stdout.read   # read stdout to string. note that this will block until the command is done!
       stderr_str = stderr.read   # read stderr to string
@@ -104,7 +108,7 @@ class WickedPdf
 
 
     raise "Error generating PDF\n Command Error: #{err}" if options[:raise_on_all_errors] && !err.empty?
-    raise "PDF could not be generated!\n Command Error: #{err} #{stdout_str}" if pdf && pdf.rstrip.empty?
+    raise "PDF could not be generated!\n Command Error: #{stdout_str} #{stderr_str} #{status}" if pdf && pdf.rstrip.empty?
     pdf
   rescue StandardError => e
     raise "Failed to execute:\n#{command}\nError: #{e}"
