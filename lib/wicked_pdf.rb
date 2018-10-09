@@ -91,16 +91,18 @@ class WickedPdf
       status = wait_thr.value    # will block until the command finishes; returns status that responds to .success? etc
     end
 
-
-
+    print_command(stdout_str)
 
     if options[:return_file]
       return_file = options.delete(:return_file)
       return generated_pdf_file
     end
+
     generated_pdf_file.rewind
     generated_pdf_file.binmode
     pdf = generated_pdf_file.read
+
+
     raise "Error generating PDF\n Command Error: #{err}" if options[:raise_on_all_errors] && !err.empty?
     raise "PDF could not be generated!\n Command Error: #{err} #{stdout_str}" if pdf && pdf.rstrip.empty?
     pdf
