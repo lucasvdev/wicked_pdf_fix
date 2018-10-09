@@ -93,6 +93,7 @@ class WickedPdf
 
 
 
+
     if options[:return_file]
       return_file = options.delete(:return_file)
       return generated_pdf_file
@@ -101,7 +102,7 @@ class WickedPdf
     generated_pdf_file.binmode
     pdf = generated_pdf_file.read
     raise "Error generating PDF\n Command Error: #{err}" if options[:raise_on_all_errors] && !err.empty?
-    raise "PDF could not be generated!\n Command Error: #{err} #{ret}" if pdf && pdf.rstrip.empty?
+    raise "PDF could not be generated!\n Command Error: #{err} #{stdout_str}" if pdf && pdf.rstrip.empty?
     pdf
   rescue StandardError => e
     raise "Failed to execute:\n#{command}\nError: #{e}"
