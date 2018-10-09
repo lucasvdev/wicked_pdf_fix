@@ -77,15 +77,15 @@ class WickedPdf
 
     ret = ""
 
-   err = Open3.popen3(*command) do |_stdin, _stdout, stderr|
-     print_command(_stdout.read)
-     ret = _stdout.read
-     stderr.read
+   #err = Open3.popen3(*command) do |_stdin, _stdout, stderr|
+     #print_command(_stdout.read)
+     #ret = _stdout.read
+     #stderr.read
     end
 
-    #exec(command)
+    exec(command)
 
-    print_command(ret)
+    #print_command(ret)
 
     if options[:return_file]
       return_file = options.delete(:return_file)
