@@ -83,6 +83,8 @@ class WickedPdf
      #stderr.read
     #end
     #
+    err = ""
+
     Open3.popen3(*command) do |stdin, stdout, stderr, wait_thr|            # we're done
       stdout_str = stdout.read   # read stdout to string. note that this will block until the command is done!
       stderr_str = stderr.read   # read stderr to string
@@ -90,10 +92,6 @@ class WickedPdf
     end
 
 
-
-    #exec(*command)
-
-    #print_command(ret)
 
     if options[:return_file]
       return_file = options.delete(:return_file)
