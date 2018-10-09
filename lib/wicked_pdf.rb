@@ -75,9 +75,11 @@ class WickedPdf
 
     print_command(command.inspect) if in_development_mode?
 
-   # err = Open3.popen3(*command) do |_stdin, _stdout, stderr|
-     # stderr.read
-    #end
+   err = Open3.popen3(*command) do |_stdin, _stdout, stderr|
+     stderr.read
+     p _stdout
+     p stderr
+    end
 
     exec(command)
 
